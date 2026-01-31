@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import sqlite3
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +31,7 @@ def upload_csv():
     df.to_sql("transactions", db, if_exists="replace", index=False)
     db.close()
 
-    return jsonify({"status": "success"})
+    return jsonify({"status": "success"}), 200
 
 # ---------------- GET TRANSACTIONS ----------------
 @app.route("/api/transactions", methods=["GET"])
@@ -39,7 +40,7 @@ def get_transactions():
     df = pd.read_sql("SELECT * FROM transactions", db)
     db.close()
 
-    return jsonify(df.to_dict(orient="records"))
+    return jsonify(df.to_dict(orient="records")), 200
 
 # ---------------- EXPLAIN TRANSACTION ----------------
 @app.route("/api/explain/<int:tid>", methods=["GET"])
@@ -56,7 +57,7 @@ def explain_transaction(tid):
     tx = tx.iloc[0]
 
     if tx["flagged"] == "NO":
-        return jsonify({"reasons": []})
+        return jsonify({"reasons": []}), 200
 
     reasons = []
 
@@ -69,7 +70,9 @@ def explain_transaction(tid):
     return jsonify({
         "transaction_id": int(tx["transaction_id"]),
         "reasons": reasons
-    })
+    }), 200
 
+# ---------------- RENDER ENTRY POINT ----------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
