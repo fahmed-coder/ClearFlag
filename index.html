@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction Anomaly Explainer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- PAGE 1: IDENTIFICATION -->
+  <section id="view-identity" class="view active">
+    <div class="card">
+      <h2>Identification</h2>
+
+      <input id="fullName" placeholder="Full Name">
+      <input id="bankName" placeholder="Bank Name">
+
+      <button class="primary-btn center-btn" onclick="goToUpload()">
+        Continue
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 2: UPLOAD -->
+  <section id="view-upload" class="view">
+    <header class="top-bar" id="userInfo"></header>
+
+    <div class="card">
+      <h3>Upload Bank Statement</h3>
+      <p class="subtext">
+        Upload your bank statement in CSV format.
+      </p>
+
+      <input type="file" id="fileInput">
+
+      <button class="primary-btn center-btn" onclick="uploadCSV()">
+        Upload & Continue
+      </button>
+      <button class="secondary-btn" onclick="backToIdentity()">Back</button>
+    </div>
+
+    <!-- SAMPLE FORMAT -->
+    <div class="card faded">
+      <h4>Sample CSV Format</h4>
+      <table class="sample-table">
+        <tr>
+          <th>transaction_id</th>
+          <th>amount</th>
+          <th>location</th>
+          <th>country</th>
+          <th>time</th>
+          <th>merchant</th>
+        </tr>
+        <tr><td>1</td><td>85.40</td><td>Toronto</td><td>Canada</td><td>10:30</td><td>Grocery</td></tr>
+        <tr><td>2</td><td>120.00</td><td>Mississauga</td><td>Canada</td><td>14:10</td><td>Restaurant</td></tr>
+        <tr><td>3</td><td>92.20</td><td>Brampton</td><td>Canada</td><td>18:40</td><td>Gas</td></tr>
+        <tr class="flagged-sample">
+          <td>4</td><td>3200.00</td><td>London</td><td>UK</td><td>15:40</td><td>Electronics</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- PAGE 3: RESULTS -->
+  <section id="view-results" class="view">
+    <header class="top-bar" id="userInfoResults"></header>
+
+    <div class="card wide">
+      <h3>Transaction Analysis</h3>
+
+      <table id="transactionsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Amount</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button class="secondary-btn" onclick="backToUpload()">Back</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <h3>Why this transaction was flagged</h3>
+    <p id="modalText"></p>
+    <button class="primary-btn" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

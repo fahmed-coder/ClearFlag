@@ -1,0 +1,197 @@
+/* =======================
+   BASE
+======================= */
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: linear-gradient(120deg, #fdfcfb, #e6eef2);
+  color: #333;
+}
+
+/* =======================
+   VIEW CONTROL
+======================= */
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+/* =======================
+   CARD LAYOUT (CORE FIX)
+======================= */
+.card {
+  background: #ffffff;
+  max-width: 520px;                 /* FIX: larger than inputs */
+  margin: 90px auto;
+  padding: 42px 48px;               /* FIX: strong horizontal padding */
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.card.wide {
+  max-width: 980px;
+  padding: 42px 52px;
+}
+
+.card.faded {
+  opacity: 0.6;
+  margin-top: 60px;
+  padding: 42px 52px;
+}
+
+.card.faded h4 {
+  font-weight: 500;
+  color: #777;
+}
+
+/* =======================
+   INPUTS (FIX WIDTH ILLUSION)
+======================= */
+input {
+  width: 92%;                       /* FIX: not full width */
+  height: 56px;
+  padding: 0 16px;
+  margin: 14px auto;
+  display: block;
+  border-radius: 14px;
+  border: 1px solid #d0d6db;
+  font-size: 16px;
+  background: #fafafa;
+}
+
+input::placeholder {
+  color: #9aa3aa;
+}
+
+input[type="file"] {
+  padding: 12px;
+}
+
+/* =======================
+   BUTTONS
+======================= */
+.primary-btn {
+  width: 92%;                       /* aligns with inputs */
+  height: 58px;
+  margin-top: 32px;
+  background: #4f8a8b;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #447d7e;
+}
+
+.secondary-btn {
+  width: 92%;
+  height: 52px;
+  margin-top: 18px;
+  background: transparent;
+  color: #4f8a8b;
+  border: 2px solid #4f8a8b;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =======================
+   TOP BAR
+======================= */
+.top-bar {
+  background: rgba(255,255,255,0.92);
+  padding: 22px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* =======================
+   TABLES
+======================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 28px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+th {
+  background: #f6f8fa;
+  font-weight: 600;
+  color: #555;
+}
+
+th, td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e6ea;
+  text-align: center;
+}
+
+/* =======================
+   FLAG STATES
+======================= */
+.flagged {
+  background: #fbeaea;              /* real flagged rows */
+}
+
+.flagged-sample {
+  background: #f9e5e5;              /* softer sample flag */
+}
+
+/* =======================
+   SAMPLE CSV TABLE
+======================= */
+.sample-table {
+  width: 100%;
+  max-width: 860px;
+  margin: 24px auto 0;
+}
+
+.sample-table th,
+.sample-table td {
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* =======================
+   TEXT
+======================= */
+.subtext {
+  margin-top: -6px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* =======================
+   MODAL
+======================= */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.modal-box {
+  background: #ffffff;
+  max-width: 460px;
+  margin: 140px auto;
+  padding: 34px 32px;
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+}
